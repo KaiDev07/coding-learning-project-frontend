@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 12px 16px;
+    width: 100%;
+    box-shadow: 0 0 7px 0 rgba(128, 128, 128, 0.5);
+    background-color: white;
+}
+
+.header-flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-flex p {
+    font-size: 16.45px;
+    font-weight: 400;
+}
+
+.header-flex button {
+    width: 100px;
+    height: 36px;
+    background-color: #eef0ef;
+    font-size: 15.75px;
+    border-radius: 36px;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.header-flex button:hover {
+    background-color: #dadada;
+}
+
+main {
+    margin-top: 60px;
+}
+
+.welcome-wrapper {
+    padding: 64px 27vw 169px;
+}
+
+.welcome-wrapper h1 {
+    font-weight: 700;
+    font-size: 40px;
+    margin-bottom: 24px;
+}
+
+.welcome-wrapper > p {
+    font-size: 18.75px;
+    color: #354541;
+}
+
+.info-card {
+    background-color: #d2dcdc;
+    border-radius: 12px;
+    margin: 24px 0 60px 0;
+    width: 77%;
+}
+
+.info-card-wrapper {
+    padding: 20px 0px 36px 28px;
+}
+
+.info-card-wrapper h2 {
+    font-weight: 700;
+    font-size: 21px;
+}
+
+.info-card-container {
+    margin-top: 24px;
+    margin-left: 35px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-card-container span {
+    color: #2c4942;
+}
+
+.info-card-container span:nth-child(2n + 1) {
+    font-size: 32px;
+}
+
+.info-card-container span:nth-child(2n) {
+    font-size: 16px;
+}
+
+.main-container:nth-child(4) {
+    margin-bottom: 50px;
+}
+
+.main-container > h2 {
+    font-weight: 500;
+    font-size: 26px;
+}
+
+.main-container > hr {
+    background-color: #c6cccb;
+    border: none;
+    height: 2px;
+    margin: 12px 0;
+}
+
+.topic-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.topic-container:last-child {
+    margin-bottom: 0;
+}
+
+.topic-container-text {
+    margin-right: 10px;
+}
+
+.topic-container-text > span {
+    font-size: 20px;
+    color: #354541;
+}
+
+.topic-container-text > span:first-child {
+    margin-right: 20px;
+}
+
+.topic-container button {
+    width: 140px;
+    height: 40px;
+    border: 2px solid #e1e6e5;
+    background-color: white;
+    color: #8d9795;
+    border-radius: 6px;
+    font-size: 13.45px;
+    font-weight: 700;
+}
+
+.topic-container-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.large-topic-button {
+    width: 200px !important;
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+}
+
+footer {
+    background-color: #2c4942;
+}
+
+.footer-wrapper {
+    padding: 30px 27vw;
+}
+
+.footer-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.footer-row span {
+    font-size: 14px;
+    color: #c6cccb;
+    margin-right: 40px;
+}
+
+.footer-row span:last-child {
+    margin-right: 0;
+}
+
+.footer-flex > span {
+    font-size: 12px;
+    color: #8d9795;
+}
+
+@media only screen and (max-width: 1786px) {
+    .info-card {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1365px) {
+    .welcome-wrapper {
+        padding: 64px 20vw 130px;
+    }
+
+    .welcome-wrapper h1 {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .welcome-wrapper > p {
+        font-size: 16px;
+    }
+
+    .info-card {
+        width: 90%;
+    }
+
+    .info-card-wrapper {
+        padding: 16px 0 32px 24px;
+    }
+
+    .info-card-wrapper h2 {
+        font-size: 18px;
+    }
+
+    .info-card-container span:nth-child(2n + 1) {
+        font-size: 26px;
+    }
+
+    .info-card-container span:nth-child(2n) {
+        font-size: 14px;
+    }
+
+    .main-container > h2 {
+        font-size: 22px;
+    }
+
+    .topic-container-text > span {
+        font-size: 18px;
+    }
+
+    .topic-container-text > span:first-child {
+        margin-right: 14px;
+    }
+
+    .topic-container button {
+        font-size: 12px;
+    }
+
+    .footer-row span {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    .info-card-container {
+        margin: 0;
+        margin-top: 20px;
+    }
+
+    .main-container > h2 {
+        text-align: center;
+    }
+
+    .topic-container {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .topic-container-text {
+        margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 958px) {
+    .info-card-wrapper {
+        padding-left: 0;
+    }
+
+    .info-card-wrapper h2 {
+        text-align: center;
+    }
+
+    .info-card-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .header-flex p {
+        font-size: 15px;
+    }
+
+    .header-flex button {
+        font-size: 14px;
+    }
+
+    .welcome-wrapper {
+        padding: 40px 12vw 110px;
+    }
+
+    .welcome-wrapper h1 {
+        font-size: 26px;
+        margin-bottom: 12px;
+    }
+
+    .welcome-wrapper > p {
+        font-size: 14px;
+    }
+
+    .info-card-wrapper h2 {
+        font-size: 16px;
+    }
+
+    .info-card-container {
+        margin-top: 15px;
+    }
+
+    .info-card-container span:nth-child(2n + 1) {
+        font-size: 20px;
+    }
+
+    .info-card-container span:nth-child(2n) {
+        font-size: 13px;
+    }
+
+    .main-container > h2 {
+        font-size: 18px;
+    }
+
+    .main-container > hr {
+        height: 1px;
+    }
+
+    .topic-container-text > span {
+        font-size: 16px;
+    }
+
+    .topic-container-text > span:first-child {
+        margin-right: 10px;
+    }
+
+    .topic-container button {
+        font-size: 10px;
+        width: 110px;
+    }
+
+    .large-topic-button {
+        width: 140px !important;
+        gap: 10px;
+        padding-right: 0;
+        justify-content: center;
+    }
+
+    .large-topic-button > img {
+        width: 13px;
+    }
+
+    .topic-container-text {
+        text-align: center;
+    }
+
+    .footer-wrapper {
+        padding: 20px 10vw;
+    }
+
+    .footer-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer-row span {
+        font-size: 12px;
+        margin-right: 0;
+    }
+
+    .footer-flex > span {
+        text-align: center;
+        font-size: 11px;
+    }
+}
