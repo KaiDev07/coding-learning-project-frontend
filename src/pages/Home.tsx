@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import linkIcon from '../assets/images/link-icon.svg'
 
 const Home = () => {
@@ -36,17 +38,21 @@ const Home = () => {
                         <h2>1. Кіріспе</h2>
                         <hr />
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>1.1.</span>
-                                <span>С++ деген не?</span>
-                            </div>
+                            <Link to="/topic1">
+                                <div className="topic-container-text">
+                                    <span>1.1.</span>
+                                    <span>С++ деген не?</span>
+                                </div>
+                            </Link>
                             <button>Оқылмаған</button>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>1.2.</span>
-                                <span>Кіріспе</span>
-                            </div>
+                            <Link to="/topic2">
+                                <div className="topic-container-text">
+                                    <span>1.2.</span>
+                                    <span>Кіріспе</span>
+                                </div>
+                            </Link>
                             <button>Оқылмаған</button>
                         </div>
                     </div>
@@ -54,10 +60,12 @@ const Home = () => {
                         <h2>2. Негізгі C++ конструкциялары</h2>
                         <hr />
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.1.</span>
-                                <span>Бірінші қадамдар</span>
-                            </div>
+                            <Link to="/topic3">
+                                <div className="topic-container-text">
+                                    <span>2.1.</span>
+                                    <span>Бірінші қадамдар</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -67,10 +75,12 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.2.</span>
-                                <span>Мәліметтер типі</span>
-                            </div>
+                            <Link to="/topic4">
+                                <div className="topic-container-text">
+                                    <span>2.2.</span>
+                                    <span>Мәліметтер типі</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -80,10 +90,12 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.3.</span>
-                                <span>Шарттар</span>
-                            </div>
+                            <Link to="/topic5">
+                                <div className="topic-container-text">
+                                    <span>2.3.</span>
+                                    <span>Шарттар</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -93,10 +105,12 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.4.</span>
-                                <span>Тармақтану және циклдер</span>
-                            </div>
+                            <Link to="/topic6">
+                                <div className="topic-container-text">
+                                    <span>2.4.</span>
+                                    <span>Тармақтану және циклдер</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -106,10 +120,12 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.5.</span>
-                                <span>Құрама мәліметтер типі</span>
-                            </div>
+                            <Link to="/topic7">
+                                <div className="topic-container-text">
+                                    <span>2.5.</span>
+                                    <span>Құрама мәліметтер типі</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -119,10 +135,12 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.6.</span>
-                                <span>Сілтеме, нұсқағыш, тұрақты шама</span>
-                            </div>
+                            <Link to="/topic8">
+                                <div className="topic-container-text">
+                                    <span>2.6.</span>
+                                    <span>Сілтеме, нұсқағыш, тұрақты шама</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -132,10 +150,12 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.7.</span>
-                                <span>Функциялар</span>
-                            </div>
+                            <Link to="/topic9">
+                                <div className="topic-container-text">
+                                    <span>2.7.</span>
+                                    <span>Функциялар</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -145,10 +165,12 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.8.</span>
-                                <span>Үлгілер</span>
-                            </div>
+                            <Link to="/topic10">
+                                <div className="topic-container-text">
+                                    <span>2.8.</span>
+                                    <span>Үлгілер</span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">
@@ -158,10 +180,14 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="topic-container">
-                            <div className="topic-container-text">
-                                <span>2.9.</span>
-                                <span>Тарау бойынша тапсырмаларды талдау</span>
-                            </div>
+                            <Link to="/topic11">
+                                <div className="topic-container-text">
+                                    <span>2.9.</span>
+                                    <span>
+                                        Тарау бойынша тапсырмаларды талдау
+                                    </span>
+                                </div>
+                            </Link>
                             <div className="topic-container-buttons">
                                 <button>Оқылмаған</button>
                                 <button className="large-topic-button">

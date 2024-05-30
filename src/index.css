@@ -7,6 +7,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 button {
     cursor: pointer;
 }
@@ -51,7 +55,8 @@ main {
     margin-top: 60px;
 }
 
-.welcome-wrapper {
+.welcome-wrapper,
+.main-wrapper {
     padding: 64px 27vw 169px;
 }
 
@@ -61,7 +66,8 @@ main {
     margin-bottom: 24px;
 }
 
-.welcome-wrapper > p {
+.welcome-wrapper > p,
+.main-wrapper > p {
     font-size: 18.75px;
     color: #354541;
 }
@@ -198,6 +204,121 @@ footer {
     color: #8d9795;
 }
 
+#main-img {
+    width: 100%;
+}
+
+.main-wrapper > h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.main-flex {
+    margin-top: 60px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main-flex > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.main-flex > div > span,
+.checkbox-label {
+    color: #354541;
+}
+
+.checkbox-label {
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    height: 24px;
+    width: 24px;
+    background-color: #d2dcdc;
+    border-radius: 5px;
+}
+
+.checkbox-label:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-label .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.tasks {
+    width: 100%;
+    background-color: #d2dcdc;
+    border-radius: 8px;
+    height: 80px;
+    padding: 0 25px;
+}
+
+.tasks-flex {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tasks-flex > h2 {
+    font-size: 20px;
+}
+
+.tasks-flex > p {
+    font-size: 14px;
+    color: #2c4942;
+}
+
+.tasks-flex > button {
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: white;
+    color: #2c4942;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 0 4px 1px grey;
+}
+
 @media only screen and (max-width: 1786px) {
     .info-card {
         width: 100%;
@@ -205,7 +326,8 @@ footer {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1365px) {
-    .welcome-wrapper {
+    .welcome-wrapper,
+    .main-wrapper {
         padding: 64px 20vw 130px;
     }
 
@@ -214,7 +336,8 @@ footer {
         margin-bottom: 12px;
     }
 
-    .welcome-wrapper > p {
+    .welcome-wrapper > p,
+    .main-wrapper > p {
         font-size: 16px;
     }
 
@@ -306,7 +429,8 @@ footer {
         font-size: 14px;
     }
 
-    .welcome-wrapper {
+    .welcome-wrapper,
+    .main-wrapper {
         padding: 40px 12vw 110px;
     }
 
@@ -315,7 +439,8 @@ footer {
         margin-bottom: 12px;
     }
 
-    .welcome-wrapper > p {
+    .welcome-wrapper > p,
+    .main-wrapper > p {
         font-size: 14px;
     }
 
