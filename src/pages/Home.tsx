@@ -2,7 +2,16 @@ import { Link } from 'react-router-dom'
 
 import linkIcon from '../assets/images/link-icon.svg'
 
+import topics from '../assets/topics'
+
 const Home = () => {
+    let topicsNum: number = 0
+    topics.forEach((topic) => {
+        if (typeof topic.tasks?.length === 'number') {
+            topicsNum += topic.tasks.length
+        }
+    })
+
     return (
         <main>
             <section id="welcome">
@@ -23,11 +32,11 @@ const Home = () => {
                         <div className="info-card-wrapper">
                             <h2>Жалпы оқу үлгерімі</h2>
                             <div className="info-card-container">
-                                <span>0 / 11</span>
+                                <span>0 / {topics.length}</span>
                                 <span>
                                     оқылған <br /> тақырыптардың саны
                                 </span>
-                                <span>0 / 79</span>
+                                <span>0 / {topicsNum}</span>
                                 <span>
                                     орындалған <br /> тапсырмалардың саны
                                 </span>
@@ -44,7 +53,9 @@ const Home = () => {
                                     <span>С++ деген не?</span>
                                 </div>
                             </Link>
-                            <button>Оқылмаған</button>
+                            <Link to="/topic1">
+                                <button>Оқылмаған</button>
+                            </Link>
                         </div>
                         <div className="topic-container">
                             <Link to="/topic2">
@@ -53,7 +64,9 @@ const Home = () => {
                                     <span>Кіріспе</span>
                                 </div>
                             </Link>
-                            <button>Оқылмаған</button>
+                            <Link to="/topic2">
+                                <button>Оқылмаған</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="main-container">
@@ -67,9 +80,11 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic3">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
-                                    0/2 орындалған{' '}
+                                    0/1 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
                                 </button>
                             </div>
@@ -82,7 +97,9 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic4">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
                                     0/2 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
@@ -97,7 +114,9 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic5">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
                                     0/2 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
@@ -112,7 +131,9 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic6">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
                                     0/2 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
@@ -127,9 +148,11 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic7">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
-                                    0/2 орындалған{' '}
+                                    0/1 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
                                 </button>
                             </div>
@@ -142,7 +165,9 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic8">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
                                     0/2 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
@@ -157,7 +182,9 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic9">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
                                     0/2 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
@@ -172,9 +199,11 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic10">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
-                                    0/2 орындалған{' '}
+                                    0/0 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
                                 </button>
                             </div>
@@ -189,9 +218,11 @@ const Home = () => {
                                 </div>
                             </Link>
                             <div className="topic-container-buttons">
-                                <button>Оқылмаған</button>
+                                <Link to="/topic11">
+                                    <button>Оқылмаған</button>
+                                </Link>
                                 <button className="large-topic-button">
-                                    0/2 орындалған{' '}
+                                    0/5 орындалған{' '}
                                     <img src={linkIcon} alt="icon" />
                                 </button>
                             </div>

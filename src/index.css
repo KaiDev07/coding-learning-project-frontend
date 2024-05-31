@@ -23,6 +23,7 @@ header {
     width: 100%;
     box-shadow: 0 0 7px 0 rgba(128, 128, 128, 0.5);
     background-color: white;
+    z-index: 1;
 }
 
 .header-flex {
@@ -35,6 +36,10 @@ header {
 .header-flex p {
     font-size: 16.45px;
     font-weight: 400;
+}
+
+.header-flex p > a {
+    color: black;
 }
 
 .header-flex button {
@@ -58,6 +63,10 @@ main {
 .welcome-wrapper,
 .main-wrapper {
     padding: 64px 27vw 169px;
+}
+
+.main-wrapper {
+    padding-bottom: 100px;
 }
 
 .welcome-wrapper h1 {
@@ -214,7 +223,7 @@ footer {
 }
 
 .main-flex {
-    margin-top: 60px;
+    margin-top: 40px;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -289,6 +298,7 @@ footer {
     border-radius: 8px;
     height: 80px;
     padding: 0 25px;
+    margin-bottom: 40px;
 }
 
 .tasks-flex {
@@ -317,6 +327,142 @@ footer {
     font-size: 16px;
     border: none;
     box-shadow: 0 0 4px 1px grey;
+    transition: all 0.3s;
+}
+
+.tasks-flex > button:hover {
+    background-color: rgba(255, 255, 255, 0.38);
+}
+
+.btn-conteiner {
+    display: flex;
+    justify-content: center;
+    --color-text: #ffffff;
+    --color-background: rgb(12, 187, 0);
+    margin-top: 5px;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: 1s;
+    border-radius: 100px;
+    box-shadow: 0 0 0.2em 0 var(--color-background);
+    cursor: pointer;
+}
+
+.btn-content:hover,
+.btn-content:focus {
+    transition: 0.5s;
+    -webkit-animation: btn-content 1s;
+    animation: btn-content 1s;
+    outline: 0.1em solid transparent;
+    outline-offset: 0.2em;
+    box-shadow: 0 0 0.4em 0 var(--color-background);
+}
+
+.btn-content .icon-arrow {
+    transition: 0.5s;
+    margin-right: 0px;
+    transform: scale(0.6);
+}
+
+.btn-content:hover .icon-arrow {
+    transition: 0.5s;
+    margin-right: 25px;
+}
+
+.icon-arrow {
+    width: 20px;
+    position: relative;
+    top: 6%;
+}
+
+.icon-arrow > svg {
+    height: 30px;
+}
+
+/* SVG */
+#arrow-icon-one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.btn-content:hover #arrow-icon-three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.btn-content:hover #arrow-icon-one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.btn-content:hover #arrow-icon-two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+
+    50% {
+        fill: var(--color-background);
+    }
+
+    100% {
+        fill: white;
+    }
+}
+
+/* Button animations */
+@-webkit-keyframes btn-content {
+    0% {
+        outline: 0.2em solid var(--color-background);
+        outline-offset: 0;
+    }
+}
+
+@keyframes btn-content {
+    0% {
+        outline: 0.2em solid var(--color-background);
+        outline-offset: 0;
+    }
+}
+
+.tasks-container {
+    display: none;
+}
+
+.task-container:not(:nth-child(1)) {
+    margin-top: 45px;
+}
+
+.task-container > img {
+    max-width: 100%;
+    margin: 15px auto 0;
+    display: none;
+}
+
+.show-task-image {
+    display: block !important;
+}
+
+.main-wrapper > iframe {
+    margin-bottom: 35px;
 }
 
 @media only screen and (max-width: 1786px) {
@@ -329,6 +475,10 @@ footer {
     .welcome-wrapper,
     .main-wrapper {
         padding: 64px 20vw 130px;
+    }
+
+    .main-wrapper {
+        padding-bottom: 80px;
     }
 
     .welcome-wrapper h1 {
@@ -380,6 +530,45 @@ footer {
     .footer-row span {
         font-size: 13px;
     }
+
+    .main-wrapper > h1 {
+        font-size: 32px;
+    }
+
+    .checkbox-label,
+    .main-flex > div > span {
+        font-size: 15px;
+    }
+
+    .main-flex > div > img {
+        width: 20px;
+    }
+
+    .checkmark {
+        width: 20px;
+        height: 20px;
+        right: -25px;
+    }
+
+    .checkbox-label .checkmark:after {
+        width: 4px;
+        height: 9px;
+        left: 7px;
+        top: 3px;
+    }
+
+    .main-flex > div {
+        gap: 2px;
+    }
+
+    .tasks-flex > h2 {
+        font-size: 18px;
+    }
+
+    .tasks-flex > button {
+        width: 110px;
+        font-size: 15px;
+    }
 }
 
 @media only screen and (max-width: 1040px) {
@@ -401,6 +590,16 @@ footer {
     .topic-container-text {
         margin-right: 0;
     }
+
+    .main-flex {
+        flex-direction: column;
+        margin-top: 30px;
+        gap: 15px;
+    }
+
+    .main-wrapper > iframe {
+        margin-bottom: 20px;
+    }
 }
 
 @media only screen and (max-width: 958px) {
@@ -418,6 +617,36 @@ footer {
         gap: 10px;
         text-align: center;
     }
+
+    .tasks {
+        height: fit-content;
+        width: 70%;
+        margin: 0 auto;
+        padding: 15px 0;
+        margin-bottom: 30px;
+    }
+
+    .tasks-flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .task-container > p {
+        font-size: 14px;
+    }
+
+    .task-container:not(:nth-child(1)) {
+        margin-top: 40px;
+    }
+
+    .btn-content {
+        font-size: 12px;
+        padding: 3px 12px;
+    }
+
+    .icon-arrow > svg {
+        height: 20px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -432,6 +661,10 @@ footer {
     .welcome-wrapper,
     .main-wrapper {
         padding: 40px 12vw 110px;
+    }
+
+    .main-wrapper {
+        padding-bottom: 60px;
     }
 
     .welcome-wrapper h1 {
@@ -515,5 +748,49 @@ footer {
     .footer-flex > span {
         text-align: center;
         font-size: 11px;
+    }
+
+    .checkbox-label,
+    .main-flex > div > span {
+        font-size: 14px;
+    }
+
+    .main-flex > div > img {
+        width: 18px;
+    }
+
+    .checkmark {
+        width: 18px;
+        height: 18px;
+    }
+
+    .checkbox-label .checkmark:after {
+        width: 3px;
+        height: 8px;
+        left: 7px;
+        top: 3px;
+    }
+
+    .tasks-flex > h2 {
+        font-size: 16px;
+    }
+
+    .tasks-flex > p {
+        font-size: 13px;
+    }
+
+    .tasks-flex > button {
+        width: 100px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .main-wrapper > h1 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .main-wrapper > iframe {
+        height: 300px;
     }
 }
