@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import topics from '../assets/topics'
+import LearningPageSlider from '../components/LearningPageSlider'
 
 import headerImg from '../assets/images/learning-page-header-img.svg'
 import chatIcon from '../assets/images/chat-icon.svg'
@@ -143,6 +144,9 @@ const LearningPages = () => {
                             ))}
                         </div>
                     )}
+                    <hr />
+                    <h2 className="slider-h2">Параграфтарға өту</h2>
+                    <LearningPageSlider />
                 </div>
             </section>
         </main>
