@@ -29,7 +29,7 @@ const Login = () => {
     }
 
     function googleAuth() {
-        return
+        window.open(`${import.meta.env.VITE_API_URL}/user/auth/google`, '_self')
     }
 
     return (
