@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 import linkIcon from '../assets/images/link-icon.svg'
 
 import topics from '../assets/topics'
 
+import { ReactTyped } from 'react-typed'
+
 const Home = () => {
+    const { user } = useAuthContext()
+
     let topicsNum: number = 0
     topics.forEach((topic) => {
         if (typeof topic.tasks?.length === 'number') {
@@ -12,11 +17,35 @@ const Home = () => {
         }
     })
 
+    let sumofdonetasks: number = 0
+    if (user !== null) {
+        sumofdonetasks =
+            Number(user.par3) +
+            Number(user.par4) +
+            Number(user.par5) +
+            Number(user.par6) +
+            Number(user.par7) +
+            Number(user.par8) +
+            Number(user.par9) +
+            Number(user.par11)
+    }
+
     return (
         <main>
             <section id="welcome">
                 <div className="welcome-wrapper">
-                    <h1>С++ негіздері</h1>
+                    <h1>
+                        <ReactTyped
+                            strings={[
+                                'С++ негіздері',
+                                'С++ тілімен танысу',
+                                'Ең күшті бағдарламау тілі 😎',
+                            ]}
+                            typeSpeed={70}
+                            backSpeed={50}
+                            loop
+                        />
+                    </h1>
                     <p>
                         C++ тіліне 40 жылға жуықтады, бірақ ол әлі де өзекті
                         және сұранысқа ие: бүгінде ол барлық жерде қолданылады -
@@ -32,11 +61,18 @@ const Home = () => {
                         <div className="info-card-wrapper">
                             <h2>Жалпы оқу үлгерімі</h2>
                             <div className="info-card-container">
-                                <span>0 / {topics.length}</span>
+                                <span>
+                                    {user?.paragraphsread.length
+                                        ? user.paragraphsread.length
+                                        : 0}{' '}
+                                    / {topics.length}
+                                </span>
                                 <span>
                                     оқылған <br /> тақырыптардың саны
                                 </span>
-                                <span>0 / {topicsNum}</span>
+                                <span>
+                                    {sumofdonetasks} / {topicsNum}
+                                </span>
                                 <span>
                                     орындалған <br /> тапсырмалардың саны
                                 </span>
@@ -54,7 +90,12 @@ const Home = () => {
                                 </div>
                             </Link>
                             <Link to="/topic1">
-                                <button>Оқылмаған</button>
+                                <button>
+                                    {user &&
+                                    user.paragraphsread.indexOf(1) !== -1
+                                        ? 'Оқылған'
+                                        : 'Оқылмаған'}
+                                </button>
                             </Link>
                         </div>
                         <div className="topic-container">
@@ -65,7 +106,12 @@ const Home = () => {
                                 </div>
                             </Link>
                             <Link to="/topic2">
-                                <button>Оқылмаған</button>
+                                <button>
+                                    {user &&
+                                    user.paragraphsread.indexOf(2) !== -1
+                                        ? 'Оқылған'
+                                        : 'Оқылмаған'}
+                                </button>
                             </Link>
                         </div>
                     </div>
@@ -81,12 +127,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic3">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(3) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/1 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic3">
+                                    <button className="large-topic-button">
+                                        {user && user.par3
+                                            ? `${user.par3}/1 орындалған`
+                                            : '0/1 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -98,12 +153,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic4">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(4) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/2 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic4">
+                                    <button className="large-topic-button">
+                                        {user && user.par4
+                                            ? `${user.par4}/2 орындалған`
+                                            : '0/2 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -115,12 +179,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic5">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(5) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/2 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic5">
+                                    <button className="large-topic-button">
+                                        {user && user.par5
+                                            ? `${user.par5}/2 орындалған`
+                                            : '0/2 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -132,12 +205,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic6">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(6) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/2 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic6">
+                                    <button className="large-topic-button">
+                                        {user && user.par6
+                                            ? `${user.par6}/2 орындалған`
+                                            : '0/2 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -149,12 +231,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic7">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(7) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/1 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic7">
+                                    <button className="large-topic-button">
+                                        {user && user.par7
+                                            ? `${user.par7}/1 орындалған`
+                                            : '0/1 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -166,12 +257,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic8">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(8) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/2 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic8">
+                                    <button className="large-topic-button">
+                                        {user && user.par8
+                                            ? `${user.par8}/2 орындалған`
+                                            : '0/2 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -183,12 +283,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic9">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(9) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/2 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic9">
+                                    <button className="large-topic-button">
+                                        {user && user.par9
+                                            ? `${user.par9}/2 орындалған`
+                                            : '0/2 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -200,12 +309,19 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic10">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(10) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/0 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic10">
+                                    <button className="large-topic-button">
+                                        Тапсырма жоқ
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="topic-container">
@@ -219,12 +335,21 @@ const Home = () => {
                             </Link>
                             <div className="topic-container-buttons">
                                 <Link to="/topic11">
-                                    <button>Оқылмаған</button>
+                                    <button>
+                                        {user &&
+                                        user.paragraphsread.indexOf(11) !== -1
+                                            ? 'Оқылған'
+                                            : 'Оқылмаған'}
+                                    </button>
                                 </Link>
-                                <button className="large-topic-button">
-                                    0/5 орындалған{' '}
-                                    <img src={linkIcon} alt="icon" />
-                                </button>
+                                <Link to="/topic11">
+                                    <button className="large-topic-button">
+                                        {user && user.par11
+                                            ? `${user.par11}/5 орындалған`
+                                            : '0/5 орындалған'}{' '}
+                                        <img src={linkIcon} alt="icon" />
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

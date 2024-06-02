@@ -2,6 +2,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import topics from '../assets/topics'
 import LearningPageSlider from '../components/LearningPageSlider'
+import { useUpdateParagraph } from '../hooks/useUpdateParagraphs'
+import { useUpdateTasks } from '../hooks/useUpdateTasks'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 import headerImg from '../assets/images/learning-page-header-img.svg'
 import chatIcon from '../assets/images/chat-icon.svg'
@@ -27,6 +30,53 @@ const LearningPages = () => {
         }
     }
 
+    const { isLoading5, updateParagraph } = useUpdateParagraph()
+
+    const handleCheckBox = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (user === null) {
+            if (inputRef.current) {
+                inputRef.current.checked = true
+            }
+            return
+        }
+        await updateParagraph(
+            Number(topic?.name.replace(/\D/g, '')),
+            e.target.checked
+        )
+    }
+
+    const { user } = useAuthContext()
+
+    const { isLoading6, updateTasks } = useUpdateTasks()
+
+    const number = Number(topic?.name.replace(/\D/g, ''))
+    const handleTaskClick = async (
+        e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    ) => {
+        if (e.currentTarget.parentElement?.nextElementSibling) {
+            e.currentTarget.parentElement.nextElementSibling.classList.toggle(
+                'show-task-image'
+            )
+        }
+
+        const max = topic?.tasks?.length
+        if (user === null) {
+            if (inputRef.current) {
+                inputRef.current.checked = true
+            }
+            return
+        }
+        let isThereTask = user[`par${number}` as keyof typeof user]
+
+        if (max === undefined || max === 0) {
+            return
+        } else if (!isThereTask || (isThereTask && Number(isThereTask) < max)) {
+            await updateTasks(`par${number}`)
+        }
+    }
+
+    const inputRef = useRef<HTMLInputElement>(null)
+
     return (
         <main>
             <img src={headerImg} alt="intro" id="main-img" />
@@ -49,7 +99,21 @@ const LearningPages = () => {
                         <div>
                             <label className="checkbox-label">
                                 Параграф оқылды
-                                <input type="checkbox" />
+                                <input
+                                    type="checkbox"
+                                    checked={
+                                        user &&
+                                        user.paragraphsread.indexOf(
+                                            Number(
+                                                topic?.name.replace(/\D/g, '')
+                                            )
+                                        ) !== -1
+                                            ? true
+                                            : false
+                                    }
+                                    disabled={isLoading5}
+                                    onChange={(e) => handleCheckBox(e)}
+                                />
                                 <span className="checkmark"></span>
                             </label>
                         </div>
@@ -67,7 +131,15 @@ const LearningPages = () => {
                             <h2>Тапсырмалар</h2>
                             <p>
                                 {topic?.tasks?.length
-                                    ? `0 / ${topic.tasks.length} тапсырма орындалған`
+                                    ? `${
+                                          user
+                                              ? user[
+                                                    `par${number}` as keyof typeof user
+                                                ]
+                                              : 0
+                                      } / ${
+                                          topic.tasks.length
+                                      } тапсырма орындалған`
                                     : 'Бұл тақырыпқа тапсырма жоқ'}
                             </p>
                             {topic?.tasks?.length && (
@@ -86,19 +158,11 @@ const LearningPages = () => {
                                     <div className="btn-conteiner">
                                         <a
                                             className="btn-content"
-                                            onClick={(e) => {
-                                                if (
-                                                    e.currentTarget
-                                                        .parentElement
-                                                        ?.nextElementSibling
-                                                ) {
-                                                    e.currentTarget.parentElement.nextElementSibling.classList.toggle(
-                                                        'show-task-image'
-                                                    )
-                                                } else {
-                                                    return
-                                                }
-                                            }}
+                                            onClick={
+                                                !isLoading6
+                                                    ? (e) => handleTaskClick(e)
+                                                    : undefined
+                                            }
                                         >
                                             <span className="btn-title">
                                                 Жауабын тексеру
@@ -149,6 +213,28 @@ const LearningPages = () => {
                     <LearningPageSlider />
                 </div>
             </section>
+
+            <div className="section">
+                <input
+                    className="modal-btn"
+                    type="checkbox"
+                    id="modal-btn"
+                    name="modal-btn"
+                    ref={inputRef}
+                />
+                <label
+                    htmlFor="modal-btn"
+                    style={{ maxHeight: '0px', maxWidth: '0px' }}
+                ></label>
+                <div className="modal">
+                    <div className="modal-wrap">
+                        <p>
+                            Параграфты оқуын немесе тапсырманың орындалуын
+                            сақтау үшін аккаунтқа кіріңіз.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </main>
     )
 }
