@@ -329,7 +329,7 @@ const Home = () => {
                                 <div className="topic-container-text">
                                     <span>2.9.</span>
                                     <span>
-                                        Тарау бойынша тапсырмаларды талда
+                                        Тарау бойынша тапсырмаларды талдау
                                     </span>
                                 </div>
                             </Link>
