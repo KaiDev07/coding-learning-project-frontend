@@ -512,6 +512,7 @@ footer {
     align-items: center;
     cursor: pointer;
     transition: all 0.3s;
+    user-select: none;
 }
 
 .slider-btn:hover {
@@ -737,6 +738,15 @@ footer {
 
     .swiper-slide h3 {
         margin-bottom: 5px;
+    }
+
+    .slider-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .slider-btn img {
+        width: 18px;
     }
 }
 
