@@ -25,6 +25,7 @@ const Header = () => {
                 </p>
                 <button
                     onClick={user ? handleLogout : () => navigate('/login')}
+                    disabled={isLoading3}
                 >
                     {user ? 'Шығу' : 'Кіру'}
                 </button>

@@ -9,8 +9,8 @@ const Login = () => {
     const [password1, setPassword1] = useState('')
     const [email2, setEmail2] = useState('')
     const [password2, setPassword2] = useState('')
-    const { isLoading1, error1, signup } = useSignup()
-    const { isLoading2, error2, login } = useLogin()
+    const { isLoading1, error1, signup, setError1 } = useSignup()
+    const { isLoading2, error2, login, setError2 } = useLogin()
 
     const handleSignup = async (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -89,6 +89,48 @@ const Login = () => {
                         <p>Немесе</p>
                         <GoogleButton onClick={googleAuth} />
                     </form>
+                </div>
+            </div>
+
+            <div className="section">
+                <input
+                    className="modal-btn"
+                    type="checkbox"
+                    id="modal-btn"
+                    name="modal-btn"
+                    checked={error1 ? true : false}
+                    onChange={() => null}
+                />
+                <label
+                    htmlFor="modal-btn"
+                    style={{ maxHeight: '0px', maxWidth: '0px' }}
+                    onClick={() => setError1('')}
+                ></label>
+                <div className="modal">
+                    <div className="modal-wrap">
+                        <p>{error1}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="section">
+                <input
+                    className="modal-btn"
+                    type="checkbox"
+                    id="modal-btn"
+                    name="modal-btn"
+                    checked={error2 ? true : false}
+                    onChange={() => null}
+                />
+                <label
+                    htmlFor="modal-btn"
+                    style={{ maxHeight: '0px', maxWidth: '0px' }}
+                    onClick={() => setError2('')}
+                ></label>
+                <div className="modal">
+                    <div className="modal-wrap">
+                        <p>{error2}</p>
+                    </div>
                 </div>
             </div>
         </main>
