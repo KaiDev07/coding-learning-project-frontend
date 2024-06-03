@@ -6,6 +6,8 @@
     NPM_CONFIG_FUND = 'false' # the fund notification is also pretty useless in a production environment
     CADDY_VERSION = '2.8.4' # specify the caddy version to use here, without a 'v' prefix. https://github.com/caddyserver/caddy/releases
 
+[phases.setup]
+nixLibs = []
 # download and untar caddy
 [phases.caddy]
     dependsOn = ['setup'] # make sure this phase runs after the default 'setup' phase
@@ -25,5 +27,3 @@
     runImage = 'ubuntu:20.04' # use a new ubuntu image to run the caddy server in
     onlyIncludeFiles = ['caddy', 'Caddyfile', 'dist'] # copy only the needed files and folders into the new image (Vite builds to a 'dist' folder)
     cmd = './caddy run --config Caddyfile --adapter caddyfile 2>&1' # start caddy using the Caddyfile config and caddyfile adapter
-[phases.setup]
-nixLibs = []
