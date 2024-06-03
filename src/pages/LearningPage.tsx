@@ -98,7 +98,7 @@ const LearningPages = () => {
                     <div className="main-flex">
                         <div>
                             <label className="checkbox-label">
-                                Параграф оқылд
+                                Параграф оқылды
                                 <input
                                     type="checkbox"
                                     checked={
