@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useAppSelector, useAppDispatch } from '../app/hooks'
+import { useAppSelector } from '../app/hooks'
 
 import linkIcon from '../assets/images/link-icon.svg'
 
