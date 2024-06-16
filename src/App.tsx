@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import ErrorModal from './components/ErrorModal'
 
 function App() {
     const user = useAppSelector((state) => state.user.user)
@@ -32,6 +33,7 @@ function App() {
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
             <Footer />
+            <ErrorModal />
         </BrowserRouter>
     )
 }

@@ -1,7 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
-import { updateParagraph, updateTasks } from '../features/user/userSlice'
+import {
+    updateParagraph,
+    updateTasks,
+    setError,
+} from '../features/user/userSlice'
 import topics from '../assets/topics'
 import LearningPageSlider from '../components/LearningPageSlider'
 
@@ -33,9 +37,11 @@ const LearningPages = () => {
 
     const handleCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (user.user === null) {
-            if (inputRef.current) {
-                inputRef.current.checked = true
-            }
+            dispatch(
+                setError(
+                    'Параграфты оқуын немесе тапсырманың орындалуын сақтау үшін аккаунтқа кіріңіз.'
+                )
+            )
             return
         }
         dispatch(
@@ -58,9 +64,11 @@ const LearningPages = () => {
 
         const max = topic?.tasks?.length
         if (user.user === null) {
-            if (inputRef.current) {
-                inputRef.current.checked = true
-            }
+            dispatch(
+                setError(
+                    'Параграфты оқуын немесе тапсырманың орындалуын сақтау үшін аккаунтқа кіріңіз.'
+                )
+            )
             return
         }
         let isThereTask = user.user[`par${number}` as keyof typeof user.user]
@@ -71,8 +79,6 @@ const LearningPages = () => {
             dispatch(updateTasks({ topicNum: `par${number}` }))
         }
     }
-
-    const inputRef = useRef<HTMLInputElement>(null)
 
     return (
         <main>
@@ -210,28 +216,6 @@ const LearningPages = () => {
                     <LearningPageSlider />
                 </div>
             </section>
-
-            <div className="section">
-                <input
-                    className="modal-btn"
-                    type="checkbox"
-                    id="modal-btn"
-                    name="modal-btn"
-                    ref={inputRef}
-                />
-                <label
-                    htmlFor="modal-btn"
-                    style={{ maxHeight: '0px', maxWidth: '0px' }}
-                ></label>
-                <div className="modal">
-                    <div className="modal-wrap">
-                        <p>
-                            Параграфты оқуын немесе тапсырманың орындалуын
-                            сақтау үшін аккаунтқа кіріңіз.
-                        </p>
-                    </div>
-                </div>
-            </div>
         </main>
     )
 }

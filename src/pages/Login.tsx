@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
-import { signup, login, clearError } from '../features/user/userSlice'
+import { signup, login } from '../features/user/userSlice'
 
 import GoogleButton from 'react-google-button'
 
@@ -89,27 +89,6 @@ const Login = () => {
                         <p>Немесе</p>
                         <GoogleButton onClick={googleAuth} />
                     </form>
-                </div>
-            </div>
-
-            <div className="section">
-                <input
-                    className="modal-btn"
-                    type="checkbox"
-                    id="modal-btn"
-                    name="modal-btn"
-                    checked={user.error ? true : false}
-                    onChange={() => null}
-                />
-                <label
-                    htmlFor="modal-btn"
-                    style={{ maxHeight: '0px', maxWidth: '0px' }}
-                    onClick={() => dispatch(clearError())}
-                ></label>
-                <div className="modal">
-                    <div className="modal-wrap">
-                        <p>{user.error}</p>
-                    </div>
                 </div>
             </div>
         </main>

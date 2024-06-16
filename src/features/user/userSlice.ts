@@ -175,6 +175,9 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        setError: (state, action: PayloadAction<string>) => {
+            state.error = action.payload
+        },
         clearError: (state) => {
             state.error = ''
         },
@@ -305,4 +308,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer
-export const { clearError } = userSlice.actions
+export const { clearError, setError } = userSlice.actions
