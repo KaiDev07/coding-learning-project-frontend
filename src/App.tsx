@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useAuthContext } from './hooks/useAuthContext'
-import { useCheckAuth } from './hooks/useCheckAuth'
+import { useAppSelector, useAppDispatch } from './app/hooks'
+import { checkAuth } from './features/user/userSlice'
 
 import Home from './pages/Home'
 import LearningPage from './pages/LearningPage'
@@ -11,11 +11,11 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
-    const { user } = useAuthContext()
-    const { checkAuth } = useCheckAuth()
+    const user = useAppSelector((state) => state.user.user)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        checkAuth()
+        dispatch(checkAuth())
     }, [])
 
     return (

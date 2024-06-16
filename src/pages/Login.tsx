@@ -1,31 +1,31 @@
 import { useState } from 'react'
-import { useSignup } from '../hooks/useSignup'
-import { useLogin } from '../hooks/useLogin'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
+import { signup, login, clearError } from '../features/user/userSlice'
 
 import GoogleButton from 'react-google-button'
 
 const Login = () => {
+    const user = useAppSelector((state) => state.user)
+    const dispatch = useAppDispatch()
     const [email1, setEmail1] = useState('')
     const [password1, setPassword1] = useState('')
     const [email2, setEmail2] = useState('')
     const [password2, setPassword2] = useState('')
-    const { isLoading1, error1, signup, setError1 } = useSignup()
-    const { isLoading2, error2, login, setError2 } = useLogin()
 
-    const handleSignup = async (
+    const handleSignup = (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
         e.preventDefault()
 
-        await signup(email1, password1)
+        dispatch(signup({ email: email1, password: password1 }))
     }
 
-    const handleLogin = async (
+    const handleLogin = (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
         e.preventDefault()
 
-        await login(email2, password2)
+        dispatch(login({ email: email2, password: password2 }))
     }
 
     function googleAuth() {
@@ -56,7 +56,7 @@ const Login = () => {
                             value={password1}
                             onChange={(e) => setPassword1(e.target.value)}
                         />
-                        <button onClick={handleSignup} disabled={isLoading1}>
+                        <button onClick={handleSignup} disabled={user.loading}>
                             Аккаунт құру
                         </button>
                         <p>Немесе</p>
@@ -83,7 +83,7 @@ const Login = () => {
                             value={password2}
                             onChange={(e) => setPassword2(e.target.value)}
                         />
-                        <button onClick={handleLogin} disabled={isLoading2}>
+                        <button onClick={handleLogin} disabled={user.loading}>
                             Аккаунтке кіру
                         </button>
                         <p>Немесе</p>
@@ -98,38 +98,17 @@ const Login = () => {
                     type="checkbox"
                     id="modal-btn"
                     name="modal-btn"
-                    checked={error1 ? true : false}
+                    checked={user.error ? true : false}
                     onChange={() => null}
                 />
                 <label
                     htmlFor="modal-btn"
                     style={{ maxHeight: '0px', maxWidth: '0px' }}
-                    onClick={() => setError1('')}
+                    onClick={() => dispatch(clearError())}
                 ></label>
                 <div className="modal">
                     <div className="modal-wrap">
-                        <p>{error1}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="section">
-                <input
-                    className="modal-btn"
-                    type="checkbox"
-                    id="modal-btn"
-                    name="modal-btn"
-                    checked={error2 ? true : false}
-                    onChange={() => null}
-                />
-                <label
-                    htmlFor="modal-btn"
-                    style={{ maxHeight: '0px', maxWidth: '0px' }}
-                    onClick={() => setError2('')}
-                ></label>
-                <div className="modal">
-                    <div className="modal-wrap">
-                        <p>{error2}</p>
+                        <p>{user.error}</p>
                     </div>
                 </div>
             </div>

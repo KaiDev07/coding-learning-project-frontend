@@ -1,20 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useLogout } from '../hooks/useLogout'
-import { useAuthContext } from '../hooks/useAuthContext'
+import { logout } from '../features/user/userSlice'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
 
 const Header = () => {
     const navigate = useNavigate()
-    const { user } = useAuthContext()
+    const user = useAppSelector((state) => state.user)
+    const dispatch = useAppDispatch()
 
-    const { isLoading3, logout } = useLogout()
-
-    const handleLogout = async (
+    const handleLogout = (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
         e.preventDefault()
 
-        logout()
+        dispatch(logout())
     }
 
     return (
@@ -24,8 +23,10 @@ const Header = () => {
                     <Link to="/">NursalimEdu</Link>
                 </p>
                 <button
-                    onClick={user ? handleLogout : () => navigate('/login')}
-                    disabled={isLoading3}
+                    onClick={
+                        user.user ? handleLogout : () => navigate('/login')
+                    }
+                    disabled={user.loading}
                 >
                     {user ? 'Шығу' : 'Кіру'}
                 </button>

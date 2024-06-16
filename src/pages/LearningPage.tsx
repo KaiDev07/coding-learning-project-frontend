@@ -1,16 +1,17 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
+import { updateParagraph, updateTasks } from '../features/user/userSlice'
 import topics from '../assets/topics'
 import LearningPageSlider from '../components/LearningPageSlider'
-import { useUpdateParagraph } from '../hooks/useUpdateParagraphs'
-import { useUpdateTasks } from '../hooks/useUpdateTasks'
-import { useAuthContext } from '../hooks/useAuthContext'
 
 import headerImg from '../assets/images/learning-page-header-img.svg'
 import chatIcon from '../assets/images/chat-icon.svg'
 import reportIcon from '../assets/images/report-error-icon.svg'
 
 const LearningPages = () => {
+    const user = useAppSelector((state) => state.user)
+    const dispatch = useAppDispatch()
     const params = useParams()
     const topic = topics.find((topic) => topic.name === params.name)
     const navigate = useNavigate()
@@ -30,27 +31,23 @@ const LearningPages = () => {
         }
     }
 
-    const { isLoading5, updateParagraph } = useUpdateParagraph()
-
-    const handleCheckBox = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (user === null) {
+    const handleCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (user.user === null) {
             if (inputRef.current) {
                 inputRef.current.checked = true
             }
             return
         }
-        await updateParagraph(
-            Number(topic?.name.replace(/\D/g, '')),
-            e.target.checked
+        dispatch(
+            updateParagraph({
+                paragraphNum: Number(topic?.name.replace(/\D/g, '')),
+                isRead: e.target.checked,
+            })
         )
     }
 
-    const { user } = useAuthContext()
-
-    const { isLoading6, updateTasks } = useUpdateTasks()
-
     const number = Number(topic?.name.replace(/\D/g, ''))
-    const handleTaskClick = async (
+    const handleTaskClick = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
     ) => {
         if (e.currentTarget.parentElement?.nextElementSibling) {
@@ -60,18 +57,18 @@ const LearningPages = () => {
         }
 
         const max = topic?.tasks?.length
-        if (user === null) {
+        if (user.user === null) {
             if (inputRef.current) {
                 inputRef.current.checked = true
             }
             return
         }
-        let isThereTask = user[`par${number}` as keyof typeof user]
+        let isThereTask = user.user[`par${number}` as keyof typeof user.user]
 
         if (max === undefined || max === 0) {
             return
         } else if (!isThereTask || (isThereTask && Number(isThereTask) < max)) {
-            await updateTasks(`par${number}`)
+            dispatch(updateTasks({ topicNum: `par${number}` }))
         }
     }
 
@@ -102,8 +99,8 @@ const LearningPages = () => {
                                 <input
                                     type="checkbox"
                                     checked={
-                                        user &&
-                                        user.paragraphsread.indexOf(
+                                        user.user &&
+                                        user.user.paragraphsread.indexOf(
                                             Number(
                                                 topic?.name.replace(/\D/g, '')
                                             )
@@ -111,7 +108,7 @@ const LearningPages = () => {
                                             ? true
                                             : false
                                     }
-                                    disabled={isLoading5}
+                                    disabled={user.loading}
                                     onChange={(e) => handleCheckBox(e)}
                                 />
                                 <span className="checkmark"></span>
@@ -132,9 +129,9 @@ const LearningPages = () => {
                             <p>
                                 {topic?.tasks?.length
                                     ? `${
-                                          user
-                                              ? user[
-                                                    `par${number}` as keyof typeof user
+                                          user.user
+                                              ? user.user[
+                                                    `par${number}` as keyof typeof user.user
                                                 ]
                                               : 0
                                       } / ${
@@ -159,7 +156,7 @@ const LearningPages = () => {
                                         <a
                                             className="btn-content"
                                             onClick={
-                                                !isLoading6
+                                                !user.loading
                                                     ? (e) => handleTaskClick(e)
                                                     : undefined
                                             }

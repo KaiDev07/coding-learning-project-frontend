@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useAuthContext } from '../hooks/useAuthContext'
+import { useAppSelector, useAppDispatch } from '../app/hooks'
 
 import linkIcon from '../assets/images/link-icon.svg'
 
@@ -8,7 +8,7 @@ import topics from '../assets/topics'
 import { ReactTyped } from 'react-typed'
 
 const Home = () => {
-    const { user } = useAuthContext()
+    const user = useAppSelector((state) => state.user.user)
 
     let topicsNum: number = 0
     topics.forEach((topic) => {
