@@ -28,7 +28,7 @@ const Header = () => {
                     }
                     disabled={user.loading}
                 >
-                    {user ? 'Шығу' : 'Кіру'}
+                    {user.user ? 'Шығу' : 'Кіру'}
                 </button>
             </div>
         </header>
