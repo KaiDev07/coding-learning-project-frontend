@@ -39,21 +39,13 @@ type Error = {
     error: string
 }
 
-export const checkAuth = createAsyncThunk<
-    AxiosUserType,
-    undefined,
-    { rejectValue: Error }
->('user/checkAuth', async (_, { rejectWithValue }) => {
-    try {
+export const checkAuth = createAsyncThunk<AxiosUserType>(
+    'user/checkAuth',
+    async () => {
         const response = await api.get<AxiosUserType>('/user/refresh')
         return response.data
-    } catch (error) {
-        if (isAxiosError(error) && error.response) {
-            return rejectWithValue(error.response.data)
-        }
-        throw error
     }
-})
+)
 
 export const login = createAsyncThunk<
     AxiosUserType,
@@ -197,13 +189,8 @@ const userSlice = createSlice({
                 }
             }
         )
-        builder.addCase(checkAuth.rejected, (state, action) => {
+        builder.addCase(checkAuth.rejected, (state) => {
             state.loading = false
-            if (action.payload) {
-                state.error = action.payload.error
-            } else {
-                state.error = action.error.message || 'Something went wrong'
-            }
         })
         builder.addCase(login.pending, (state) => {
             state.loading = true
